@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Rag Code | HTML Block Coding</title>
+<link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+<body>
+<div id="header">
+<table>
+<tr>
+<td style="padding: 15px";><h1>Rag Code</h1></td><td><div class="dropdown">
+  <button class="dropbtn" style="background: #2196F3">Add A New Element</button>
+  <div class="dropdown-content">
+    <a onclick="newElement('HTML');"><div class="elementDD">HTML</div>  -  Defines Html Code</a>
+    <a onclick="newElement('Head');"><div class="elementDD">Head</div>  -  The Header Of Your Document</a>
+    <a onclick="newElement('Body');"><div class="elementDD">Body</div>  -  The Content Of Your Document</a>
+  </div>
+</div></td><td><div class="dropdown">
+  <button class="dropbtn" style="background: #4CAF50">Add A Property</button>
+  <div class="dropdown-content">
+    <a href="#"><div class="propertyDD">Href</div>  -  Destination for a link</a>
+    <a href="#"><div class="propertyDD">Src</div>  -  Source of an image, script, or frame</a>
+    <a href="#"><div class="propertyDD">Onclick</div>  -  Runs a script when clicked</a>
+  </div>
+</div></td><td><div class="dropdown">
+  <button class="dropbtn" style="background: #ed902d">Add A Style</button>
+  <div class="dropdown-content">
+    <a href="#"><div class="styleDD">Height</div>  -  The height of the element</a>
+    <a href="#"><div class="styleDD">Width</div>  -  The width of an element</a>
+    <a href="#"><div class="styleDD">Background</div>  -  The background of an element</a>
+  </div>
+</div></td></tr></table>
+</div>
+<div id="elementsContainer">
+</div>
+<script src="ragCode.js"></script>
+</body>
+</html>
