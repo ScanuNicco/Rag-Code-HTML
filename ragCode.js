@@ -39,8 +39,8 @@ function dragElement(elmnt) {
 		obj.pos4 = e.clientY;
 		for (i = 0; i < elements.length; i++) {
 			if (i != objID) {
-				if (obj.pos3 < elements[i].pos3 + 100 && obj.pos3 > elements[i].pos3) {
-					if (obj.pos4 < elements[i].pos4 + 50 && obj.pos4 > elements[i].pos4) {
+				if (obj.pos3 < elements[i].pos3 + ((elements[i].numChildren + 1) * 100) && obj.pos3 > elements[i].pos3 - ((elements[i].numChildren + 1) * 100)) {
+					if (obj.pos4 < elements[i].pos4 + ((elements[i].numChildren + 1) * 50) && obj.pos4 > elements[i].pos4 - ((elements[i].numChildren + 1) * 50)) {
 						document.getElementById(elmnt.id + "header").style.cursor = "copy";
 						intersecting = true;
 						which = i;
@@ -60,6 +60,8 @@ function dragElement(elmnt) {
 	}
 
 	function closeDragElement() {
+				var objID = elmnt.getAttribute("objectid");
+		var obj = elements[parseFloat(objID)];
 		if (intersecting) {
 			console.log("dropped on another element");
 			setParent(elmnt, document.getElementById(elements[which].type + which + "children"))
@@ -67,9 +69,14 @@ function dragElement(elmnt) {
 			obj.pos2 = 0;
 			obj.pos3 = 0;
 			obj.pos4 = 0;
-			elmnt.style.top = (0) + "px";
-			elmnt.style.left = (0) + "px";
-			document.getElementById(elements[which].type + which).style.width = "500px"; //document.getElementById(elements[which].type + which).style.width + elmnt.style.width;
+			elements[which].numChildren++;
+			elements[which].numChildren += obj.numChildren;
+			elmnt.style.top = (elements[which].numChildren * 55) + "px";
+			elmnt.style.left = (50) + "px";
+			document.getElementById(elements[which].type + which).style.width = (elements[which].numChildren * 200) + "px"; 
+			document.getElementById(elements[which].type + which + "children").style.height = (elements[which].numChildren * 200) + "px"; 
+			
+			//document.getElementById(elements[which].type + which).style.width + elmnt.style.width;
 		} else {
 			console.log("dropped on body element");
 			setParent(elmnt, document.getElementsByTagName("body")[0]);
@@ -90,8 +97,9 @@ class Element {
 		this.pos2 = 0;
 		this.pos3 = 0;
 		this.pos4 = 0;
+		this.numChildren = 0;
 		var container = document.getElementById("elementsContainer");
-		container.innerHTML = container.innerHTML + "<div class='elementDisplay' id='" + elementType + numOfElements + "' objectid='" + numOfElements + "'><div id='" + elementType + numOfElements + "header' class='elementHeader'>" + elementType + " Element</div><div id='" + elementType + numOfElements + "children' class='elementContainer'><br></div></div>";
+		container.innerHTML = container.innerHTML + "<div class='elementDisplay' id='" + elementType + numOfElements + "' objectid='" + numOfElements + "'><div id='" + elementType + numOfElements + "header' class='elementHeader'>" + elementType + " Element</div><div id='" + elementType + numOfElements + "children' class='elementChildren'><br></div></div>";
 		dragElement(document.getElementById(elementType + numOfElements));
 		numOfElements++;
 	}

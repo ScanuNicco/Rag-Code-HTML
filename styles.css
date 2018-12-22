@@ -15,6 +15,7 @@ overflow: hidden;
   background-color: #f1f1f1;
   text-align: center;
   resize: both;
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, .7);
 }
 
 .elementHeader {
@@ -23,6 +24,10 @@ overflow: hidden;
   z-index: 10;
   background-color: #2196F3;
   color: #fff;
+}
+
+.elementChildren{
+	border: none;
 }
 
 #header {
